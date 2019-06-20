@@ -7,9 +7,58 @@
 //
 
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <algorithm>
+#include <sstream>
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+struct Referee{
+    string number1;
+    string name1;
+    string c1[7];
+}s1[7];
+
+template <class Type>
+Type stringToNum(const string& str)
+{
+    istringstream iss(str);
+    Type num;
+    iss>>num;
+    return num;
+}//参考CSDN
+
+
+int main()
+{
+    int i;
+    int sum=0;
+    ifstream ef2("/Users/s20181102933/Desktop/裁判信息的副本.txt");
+    
+    for(i=0;i<7;i++){
+        
+        ef2>>s1[i].number1>>s1[i].name1;
+        for(int j=0;j<7;++j)
+            ef2>>s1[i].c1[j];
+    }
+    int k[7];
+    int s;
+    
+    for(int i=0;i<7;i++){
+        for(int j=1;j<7;j++){
+        k[j]=stringToNum<int>(s1[i].c1[j]);
+    }
+    }
+    for(int i=0;i<7;i++){
+        for(int j=1;j<7;j++){
+            if(k[j]<k[j-1]){
+                s=k[j];
+                k[j]=k[j-1];
+                k[j-1]=s;
+            }
+            cout<<k[j]<<" ";
+        }
+        cout<<endl;
+    }
     return 0;
 }
