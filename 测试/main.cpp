@@ -43,21 +43,21 @@ int main()
     }
     int k[7];
     int s;
-    
     for(int i=0;i<7;i++){
-        for(int j=1;j<7;j++){
-        k[j]=stringToNum<int>(s1[i].c1[j]);
-    }
-    }
-    for(int i=0;i<7;i++){
-        for(int j=1;j<7;j++){
-            if(k[j]<k[j-1]){
-                s=k[j];
-                k[j]=k[j-1];
-                k[j-1]=s;
+        for(int j=0;j<7;j++){
+            k[j]=stringToNum<int>(s1[i].c1[j]);}
+        
+            for(int h=0;h<7;h++){
+                for(int g=1;g<7;g++){
+                    if(k[g]<k[g-1]){
+                        s=k[g];
+                        k[g]=k[g-1];
+                        k[g-1]=s;
+                    }
+                }
             }
-            cout<<k[j]<<" ";
-        }
+        for(int y=0;y<7;++y)
+            cout<<k[y]<<" ";
         cout<<endl;
     }
     return 0;
