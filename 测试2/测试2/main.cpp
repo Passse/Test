@@ -10,27 +10,24 @@
 #include <cmath>
 using namespace std;
 
-class Point
-{
+class A{
 public:
-    Point(int x=0, int y=0) : x(x), y(y) {}
-    int getX() {return x;}
-    int getY() {return y;}
-    friend float dist(Point &p1,Point &p2);
+    void display(){
+        count<<x<<endl;
+    }
+    int getX(){
+        return x;
+        friend B;
+    }
+};
+class B{
+public:
+    void set(int i);
+    void display();
 private:
-    int x,y;
+    A a;
 };
 
-float dist (Point &p1, Point &p2){
-    double x=p1.x-p2.x;
-    double y=p1.y-p2.y;
-    return static_cast<float>(sqrt(x*x+y*y));
-}
-
-int main()
-{
-    Point mypl(1,1), myp2(4,5);
-    cout<<"The distabce is: ";
-    cout<<dist(mypl, myp2)<<endl;
-    return 0;
+void B::set(int i){
+    a.x=i;
 }
