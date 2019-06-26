@@ -7,37 +7,30 @@
 //
 
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-class Clock{
+class Point
+{
 public:
-    Clock();
-    void setTime(int newH,int newM,int news);
-    void showTime();
+    Point(int x=0, int y=0) : x(x), y(y) {}
+    int getX() {return x;}
+    int getY() {return y;}
+    friend float dist(Point &p1,Point &p2);
 private:
-    int hour,minute,second;
+    int x,y;
 };
 
-Clock::Clock() :hour(0), minute(0), second(0) {}
-void Clock::setTime(int newH,int newM,int newS) {
-    hour=newH;
-    minute=newM;
-    second=newS;
+float dist (Point &p1, Point &p2){
+    double x=p1.x-p2.x;
+    double y=p1.y-p2.y;
+    return static_cast<float>(sqrt(x*x+y*y));
 }
 
-void Clock::showTime() {
-    cout<<hour<<":"<<minute<<":"<<second<<endl;
-}
-
-
-Clock globClock;
 int main()
 {
-    cout<<"First time output: "<<endl;
-    globClock.showTime();
-    globClock.setTime(8,30,30);
-    Clock myClock(globClock);
-    cout<<"Second time output :"<<endl;
-    myClock.showTime();
+    Point mypl(1,1), myp2(4,5);
+    cout<<"The distabce is: ";
+    cout<<dist(mypl, myp2)<<endl;
     return 0;
 }
