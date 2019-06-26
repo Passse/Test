@@ -9,50 +9,35 @@
 #include <iostream>
 using namespace std;
 
-class Point{
+class Clock{
 public:
-    Point(int xx=0,int yy=0){
-        x=xx;
-        y=yy;
-    }
-    Point(Point &p){
-        x=p.x;
-        y=p.y;
-        cout<<"Callint the copy constructor"<<endl;
-    }
-    int getX(){
-        return x;
-    }
-    int getY(){
-        return y;
-    }
+    Clock();
+    void setTime(int newH,int newM,int news);
+    void showTime();
 private:
-    int x,y;
+    int hour,minute,second;
 };
 
-void fun1(Point p){
-    cout<<p.getX()<<endl;
-}
-Point fun2(){
-    Point a(1,2);
-    return a;
+Clock::Clock() :hour(0), minute(0), second(0) {}
+void Clock::setTime(int newH,int newM,int newS) {
+    hour=newH;
+    minute=newM;
+    second=newS;
 }
 
+void Clock::showTime() {
+    cout<<hour<<":"<<minute<<":"<<second<<endl;
+}
+
+
+Clock globClock;
 int main()
 {
-    Point a(4,5);
-    Point b=a;//1
-
-    cout<<b.getX()<<endl;
-    
-    fun1(b);//2
-    
-    b=fun2();//3
-    cout<<b.getX()<<endl;
+    cout<<"First time output: "<<endl;
+    globClock.showTime();
+    globClock.setTime(8,30,30);
+    Clock myClock(globClock);
+    cout<<"Second time output :"<<endl;
+    myClock.showTime();
     return 0;
 }
-/*Point::Point(Point &p) {
- x=p.x;
- y=p.y;
- cout<<endl;
- }*/
